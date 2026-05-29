@@ -173,3 +173,232 @@ document.addEventListener("click", (e) => {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NEXUS - Adaptive Learning V2</title>
+
+<style>
+:root {
+  --bg:#0a0f1a;
+  --card:#121a28;
+  --text:#eaf1ff;
+  --muted:#8ea2c8;
+  --accent:#4f8eff;
+  --accent2:#7c5dfa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* NAV */
+nav {
+  display:flex;
+  justify-content:space-between;
+  padding:16px 28px;
+  background:rgba(10,15,26,0.9);
+  border-bottom:1px solid #1e2a40;
+  position:sticky;
+  top:0;
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  font-weight:700;
+  color:var(--accent);
+  letter-spacing:1px;
+}
+
+nav a {
+  color:var(--muted);
+  margin-left:18px;
+  text-decoration:none;
+  font-size:14px;
+}
+
+nav a:hover {
+  color:var(--text);
+}
+
+/* HERO */
+.hero {
+  text-align:center;
+  padding:70px 20px 30px;
+}
+
+.hero h1 {
+  font-size:42px;
+  margin:0;
+}
+
+.hero span {
+  color:var(--accent);
+}
+
+.hero p {
+  color:var(--muted);
+  max-width:650px;
+  margin:12px auto;
+  line-height:1.6;
+}
+
+/* CARD */
+.card {
+  background:var(--card);
+  margin:30px auto;
+  max-width:850px;
+  padding:22px;
+  border-radius:14px;
+  border:1px solid #1e2a40;
+  position:relative;
+}
+
+/* SECTION TITLE */
+.section-title {
+  font-size:18px;
+  margin-bottom:12px;
+  color:var(--accent);
+  font-weight:600;
+}
+
+/* WORD STYLE */
+.word {
+  color:var(--accent);
+  cursor:pointer;
+  border-bottom:1px dotted var(--accent);
+  transition:0.2s;
+}
+
+.word:hover {
+  opacity:0.8;
+}
+
+/* POPUP */
+.popup {
+  position:absolute;
+  display:none;
+  background:#0f1624;
+  border:1px solid #2a3a58;
+  padding:14px;
+  border-radius:12px;
+  max-width:240px;
+  box-shadow:0 12px 35px rgba(0,0,0,0.5);
+  animation: fadeIn 0.15s ease;
+  z-index:10;
+}
+
+.popup strong {
+  color:var(--accent2);
+}
+
+.popup small {
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(5px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* FOOT NOTE */
+.note {
+  font-size:13px;
+  color:var(--muted);
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">NEXUS</div>
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Learn</a>
+    <a href="#">Path</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>The AI that learns <span>how you learn</span></h1>
+  <p>
+    Adaptive learning system powered by metacognition,
+    memory tracking, and real-time cognitive feedback.
+  </p>
+</section>
+
+<div class="card" id="card">
+  <div class="section-title">Interactive Learning System</div>
+
+  <p>
+    Understanding
+    <span class="word" data-word="Metacognition"
+      data-def="The ability to think about your own thinking process and improve how you learn.">
+      metacognition
+    </span>
+    allows learners to improve
+    <span class="word" data-word="Memory"
+      data-def="The brain's ability to store, retain, and recall information over time.">
+      memory
+    </span>
+    and build stronger learning systems.
+  </p>
+
+  <div class="note">Click on any highlighted word to see AI explanation.</div>
+
+  <div class="popup" id="popup"></div>
+</div>
+
+<script>
+const words = document.querySelectorAll(".word");
+const popup = document.getElementById("popup");
+const card = document.getElementById("card");
+
+let active = null;
+
+words.forEach(word => {
+  word.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    const rect = word.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+
+    const title = word.dataset.word;
+    const def = word.dataset.def;
+
+    popup.innerHTML = `
+      <strong>${title}</strong>
+      <small>${def}</small>
+    `;
+
+    popup.style.display = "block";
+
+    // position inside card
+    popup.style.left = (rect.left - cardRect.left) + "px";
+    popup.style.top = (rect.bottom - cardRect.top + 10) + "px";
+
+    active = word;
+  });
+});
+
+document.addEventListener("click", () => {
+  popup.style.display = "none";
+  active = null;
+});
+</script>
+
+</body>
+</html>
