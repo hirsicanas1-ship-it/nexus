@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NEXUS - Adaptive Learning MVP</title>
+
+<style>
+:root {
+  --bg:#0b0f17;
+  --card:#141b26;
+  --text:#e8eefc;
+  --muted:#93a4c7;
+  --accent:#4f8eff;
+  --accent2:#7c5dfa;
+}
+
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* NAV */
+nav {
+  display:flex;
+  justify-content:space-between;
+  padding:18px 30px;
+  background:#0b0f17;
+  border-bottom:1px solid #1f2a3d;
+  position:sticky;
+  top:0;
+}
+
+.logo {
+  font-weight:bold;
+  color:var(--accent);
+}
+
+nav a {
+  color:var(--muted);
+  margin-left:15px;
+  text-decoration:none;
+}
+
+/* HERO */
+.hero {
+  text-align:center;
+  padding:80px 20px;
+}
+
+.hero h1 {
+  font-size:42px;
+}
+
+.hero span {
+  color:var(--accent);
+}
+
+.hero p {
+  color:var(--muted);
+  max-width:600px;
+  margin:10px auto;
+}
+
+/* CARD */
+.card {
+  background:var(--card);
+  margin:20px auto;
+  max-width:900px;
+  padding:20px;
+  border-radius:12px;
+  border:1px solid #1f2a3d;
+}
+
+/* WORD SYSTEM */
+.word {
+  color:var(--accent);
+  cursor:pointer;
+  border-bottom:1px dotted var(--accent);
+}
+
+.popup {
+  position:absolute;
+  display:none;
+  background:#111827;
+  border:1px solid #2b3a55;
+  padding:12px;
+  border-radius:10px;
+  max-width:220px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+.popup strong {
+  color:var(--accent2);
+}
+
+.section-title {
+  font-size:20px;
+  margin-bottom:10px;
+  color:var(--accent);
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">NEXUS</div>
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Learn</a>
+    <a href="#">Path</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>The AI that learns <span>how you learn</span></h1>
+  <p>
+    A personal adaptive learning system based on metacognition,
+    memory tracking, and intelligent practice.
+  </p>
+</section>
+
+<div class="card">
+  <div class="section-title">Interactive Learning Demo</div>
+
+  <p>
+    The concept of
+    <span class="word" data-word="metacognition"
+      data-def="Thinking about your own thinking process.">
+      metacognition
+    </span>
+    helps learners understand how they learn best.
+    This improves
+    <span class="word" data-word="memory"
+      data-def="The ability to store and recall information over time.">
+      memory
+    </span>
+    and long-term retention.
+  </p>
+
+  <div class="popup" id="popup"></div>
+</div>
+
+<script>
+const words = document.querySelectorAll(".word");
+const popup = document.getElementById("popup");
+
+words.forEach(w => {
+  w.addEventListener("click", (e) => {
+    const def = w.dataset.def;
+    const word = w.dataset.word;
+
+    popup.innerHTML = `
+      <strong>${word}</strong><br><br>
+      ${def}
+    `;
+
+    popup.style.display = "block";
+    popup.style.left = e.pageX + "px";
+    popup.style.top = e.pageY + "px";
+  });
+});
+
+document.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("word")) {
+    popup.style.display = "none";
+  }
+});
+</script>
+
+</body>
+</html>
