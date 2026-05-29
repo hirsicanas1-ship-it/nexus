@@ -1,404 +1,1708 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>NEXUS - Adaptive Learning MVP</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS — AI Learning Ecosystem</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#0b0f17;
-  --card:#141b26;
-  --text:#e8eefc;
-  --muted:#93a4c7;
-  --accent:#4f8eff;
-  --accent2:#7c5dfa;
-}
-
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
-
-/* NAV */
-nav {
-  display:flex;
-  justify-content:space-between;
-  padding:18px 30px;
-  background:#0b0f17;
-  border-bottom:1px solid #1f2a3d;
-  position:sticky;
-  top:0;
-}
-
-.logo {
-  font-weight:bold;
-  color:var(--accent);
-}
-
-nav a {
-  color:var(--muted);
-  margin-left:15px;
-  text-decoration:none;
-}
-
-/* HERO */
-.hero {
-  text-align:center;
-  padding:80px 20px;
-}
-
-.hero h1 {
-  font-size:42px;
-}
-
-.hero span {
-  color:var(--accent);
-}
-
-.hero p {
-  color:var(--muted);
-  max-width:600px;
-  margin:10px auto;
-}
-
-/* CARD */
-.card {
-  background:var(--card);
-  margin:20px auto;
-  max-width:900px;
-  padding:20px;
-  border-radius:12px;
-  border:1px solid #1f2a3d;
-}
-
-/* WORD SYSTEM */
-.word {
-  color:var(--accent);
-  cursor:pointer;
-  border-bottom:1px dotted var(--accent);
-}
-
-.popup {
-  position:absolute;
-  display:none;
-  background:#111827;
-  border:1px solid #2b3a55;
-  padding:12px;
-  border-radius:10px;
-  max-width:220px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
-
-.popup strong {
-  color:var(--accent2);
-}
-
-.section-title {
-  font-size:20px;
-  margin-bottom:10px;
-  color:var(--accent);
-}
-</style>
-</head>
-
-<body>
-
-<nav>
-  <div class="logo">NEXUS</div>
-  <div>
-    <a href="#">Home</a>
-    <a href="#">Learn</a>
-    <a href="#">Path</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <h1>The AI that learns <span>how you learn</span></h1>
-  <p>
-    A personal adaptive learning system based on metacognition,
-    memory tracking, and intelligent practice.
-  </p>
-</section>
-
-<div class="card">
-  <div class="section-title">Interactive Learning Demo</div>
-
-  <p>
-    The concept of
-    <span class="word" data-word="metacognition"
-      data-def="Thinking about your own thinking process.">
-      metacognition
-    </span>
-    helps learners understand how they learn best.
-    This improves
-    <span class="word" data-word="memory"
-      data-def="The ability to store and recall information over time.">
-      memory
-    </span>
-    and long-term retention.
-  </p>
-
-  <div class="popup" id="popup"></div>
-</div>
-
-<script>
-const words = document.querySelectorAll(".word");
-const popup = document.getElementById("popup");
-
-words.forEach(w => {
-  w.addEventListener("click", (e) => {
-    const def = w.dataset.def;
-    const word = w.dataset.word;
-
-    popup.innerHTML = `
-      <strong>${word}</strong><br><br>
-      ${def}
-    `;
-
-    popup.style.display = "block";
-    popup.style.left = e.pageX + "px";
-    popup.style.top = e.pageY + "px";
-  });
-});
-
-document.addEventListener("click", (e) => {
-  if (!e.target.classList.contains("word")) {
-    popup.style.display = "none";
+  :root {
+    --bg: #060910;
+    --bg2: #0c1118;
+    --bg3: #111820;
+    --surface: #161e2a;
+    --surface2: #1c2535;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0f4ff;
+    --text2: #8b95ab;
+    --text3: #5a6478;
+    --accent: #4f8eff;
+    --accent2: #7c5dfa;
+    --accent3: #00d4a0;
+    --accent4: #ff6b6b;
+    --accent5: #ffb443;
+    --glow: rgba(79,142,255,0.15);
+    --glow2: rgba(124,93,250,0.12);
   }
-});
-</script>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>NEXUS - Adaptive Learning V2</title>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-:root {
-  --bg:#0a0f1a;
-  --card:#121a28;
-  --text:#eaf1ff;
-  --muted:#8ea2c8;
-  --accent:#4f8eff;
-  --accent2:#7c5dfa;
-}
+  html { scroll-behavior: smooth; }
 
-* {
-  box-sizing: border-box;
-}
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
 
-/* NAV */
-nav {
-  display:flex;
-  justify-content:space-between;
-  padding:16px 28px;
-  background:rgba(10,15,26,0.9);
-  border-bottom:1px solid #1e2a40;
-  position:sticky;
-  top:0;
-  backdrop-filter: blur(10px);
-}
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 64px;
+    background: rgba(6,9,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
 
-.logo {
-  font-weight:700;
-  color:var(--accent);
-  letter-spacing:1px;
-}
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
 
-nav a {
-  color:var(--muted);
-  margin-left:18px;
-  text-decoration:none;
-  font-size:14px;
-}
+  .nav-logo span { color: var(--accent); }
 
-nav a:hover {
-  color:var(--text);
-}
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
 
-/* HERO */
-.hero {
-  text-align:center;
-  padding:70px 20px 30px;
-}
+  .nav-links a {
+    color: var(--text2); font-size: 0.9rem; text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
 
-.hero h1 {
-  font-size:42px;
-  margin:0;
-}
+  .nav-cta {
+    background: var(--accent);
+    color: #fff !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.88rem !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: #3a78f0 !important; transform: translateY(-1px); }
 
-.hero span {
-  color:var(--accent);
-}
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem 2rem 5rem;
+    text-align: center;
+    overflow: hidden;
+  }
 
-.hero p {
-  color:var(--muted);
-  max-width:650px;
-  margin:12px auto;
-  line-height:1.6;
-}
+  /* Orb backgrounds */
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,142,255,0.08) 0%, rgba(124,93,250,0.05) 40%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    pointer-events: none;
+  }
 
-/* CARD */
-.card {
-  background:var(--card);
-  margin:30px auto;
-  max-width:850px;
-  padding:22px;
-  border-radius:14px;
-  border:1px solid #1e2a40;
-  position:relative;
-}
+  .orb1 {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,142,255,0.06) 0%, transparent 70%);
+    top: -100px; left: -150px;
+    pointer-events: none;
+  }
 
-/* SECTION TITLE */
-.section-title {
-  font-size:18px;
-  margin-bottom:12px;
-  color:var(--accent);
-  font-weight:600;
-}
+  .orb2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,212,160,0.05) 0%, transparent 70%);
+    bottom: 0; right: -100px;
+    pointer-events: none;
+  }
 
-/* WORD STYLE */
-.word {
-  color:var(--accent);
-  cursor:pointer;
-  border-bottom:1px dotted var(--accent);
-  transition:0.2s;
-}
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(79,142,255,0.1);
+    border: 1px solid rgba(79,142,255,0.25);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.82rem;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+    position: relative; z-index: 1;
+    animation: fadeSlideUp 0.6s ease both;
+  }
 
-.word:hover {
-  opacity:0.8;
-}
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
 
-/* POPUP */
-.popup {
-  position:absolute;
-  display:none;
-  background:#0f1624;
-  border:1px solid #2a3a58;
-  padding:14px;
-  border-radius:12px;
-  max-width:240px;
-  box-shadow:0 12px 35px rgba(0,0,0,0.5);
-  animation: fadeIn 0.15s ease;
-  z-index:10;
-}
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
 
-.popup strong {
-  color:var(--accent2);
-}
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 820px;
+    position: relative; z-index: 1;
+    animation: fadeSlideUp 0.6s 0.1s ease both;
+  }
 
-.popup small {
-  display:block;
-  margin-top:6px;
-  color:var(--muted);
-}
+  .hero h1 .grad {
+    background: linear-gradient(135deg, #4f8eff 0%, #7c5dfa 50%, #00d4a0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-@keyframes fadeIn {
-  from { opacity:0; transform:translateY(5px); }
-  to { opacity:1; transform:translateY(0); }
-}
+  .hero p {
+    max-width: 580px;
+    font-size: 1.15rem;
+    color: var(--text2);
+    margin-top: 1.5rem;
+    font-weight: 300;
+    line-height: 1.75;
+    position: relative; z-index: 1;
+    animation: fadeSlideUp 0.6s 0.2s ease both;
+  }
 
-/* FOOT NOTE */
-.note {
-  font-size:13px;
-  color:var(--muted);
-  margin-top:10px;
-}
+  .hero-actions {
+    display: flex; align-items: center; gap: 1rem;
+    margin-top: 2.5rem;
+    position: relative; z-index: 1;
+    animation: fadeSlideUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.8rem 1.8rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none; cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-primary:hover { background: #3a78f0; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(79,142,255,0.3); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent;
+    color: var(--text2);
+    padding: 0.8rem 1.8rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .btn-secondary:hover { color: var(--text); border-color: rgba(255,255,255,0.2); background: var(--surface); }
+
+  /* ── HERO STATS ── */
+  .hero-stats {
+    display: flex; align-items: center; gap: 3rem;
+    margin-top: 4rem;
+    position: relative; z-index: 1;
+    animation: fadeSlideUp 0.6s 0.4s ease both;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--text3);
+    margin-top: 0.2rem;
+  }
+
+  .stat-divider {
+    width: 1px; height: 40px;
+    background: var(--border);
+  }
+
+  /* ── DASHBOARD PREVIEW ── */
+  .hero-preview {
+    position: relative;
+    margin-top: 5rem;
+    width: 100%;
+    max-width: 1000px;
+    animation: fadeSlideUp 0.8s 0.5s ease both;
+    z-index: 1;
+  }
+
+  .preview-glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(79,142,255,0.3), rgba(124,93,250,0.2), rgba(0,212,160,0.15));
+    filter: blur(1px);
+    z-index: -1;
+  }
+
+  .preview-window {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .preview-bar {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; }
+  .dot.y { background: #febc2e; }
+  .dot.g { background: #28c840; }
+
+  .preview-url {
+    flex: 1;
+    background: var(--surface);
+    border-radius: 5px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.78rem;
+    color: var(--text3);
+    text-align: center;
+    margin: 0 0.5rem;
+  }
+
+  .preview-body {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    height: 420px;
+  }
+
+  .preview-sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .sidebar-section {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin: 0.8rem 0 0.4rem;
+  }
+
+  .sidebar-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.45rem 0.6rem;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .sidebar-item:hover, .sidebar-item.active {
+    background: rgba(79,142,255,0.1);
+    color: var(--text);
+  }
+
+  .sidebar-item.active { color: var(--accent); }
+
+  .sidebar-icon {
+    width: 18px; height: 18px;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+  }
+
+  .preview-main {
+    padding: 1.25rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .preview-greeting {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .preview-greeting h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .preview-greeting span {
+    font-size: 0.78rem;
+    color: var(--text3);
+  }
+
+  .preview-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
+  .preview-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem;
+  }
+
+  .preview-card-label {
+    font-size: 0.7rem;
+    color: var(--text3);
+    margin-bottom: 0.25rem;
+  }
+
+  .preview-card-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+
+  .preview-card-sub {
+    font-size: 0.7rem;
+    color: var(--accent3);
+    margin-top: 0.15rem;
+  }
+
+  .c-accent { color: var(--accent); }
+  .c-purple { color: var(--accent2); }
+  .c-green { color: var(--accent3); }
+
+  /* XP Bar */
+  .xp-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem;
+  }
+
+  .xp-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .xp-label { font-size: 0.78rem; color: var(--text2); }
+  .xp-value { font-size: 0.78rem; color: var(--text3); }
+
+  .xp-bar {
+    height: 6px;
+    background: var(--bg3);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .xp-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    animation: xpGrow 1.5s 1s ease both;
+    width: 72%;
+  }
+
+  @keyframes xpGrow {
+    from { width: 0; }
+    to { width: 72%; }
+  }
+
+  /* Vocab row */
+  .vocab-row {
+    display: flex; gap: 0.4rem; flex-wrap: wrap;
+  }
+
+  .vocab-pill {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.72rem;
+    color: var(--text2);
+  }
+
+  .vocab-pill.mastered { border-color: rgba(0,212,160,0.3); color: var(--accent3); background: rgba(0,212,160,0.07); }
+  .vocab-pill.learning { border-color: rgba(79,142,255,0.3); color: var(--accent); background: rgba(79,142,255,0.07); }
+  .vocab-pill.weak { border-color: rgba(255,107,107,0.3); color: var(--accent4); background: rgba(255,107,107,0.07); }
+
+  /* Mission block */
+  .mission-list { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .mission-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .mission-icon {
+    width: 22px; height: 22px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .mission-text { font-size: 0.78rem; color: var(--text2); flex: 1; }
+  .mission-xp { font-size: 0.7rem; color: var(--accent5); font-weight: 600; }
+
+  .mission-done { opacity: 0.5; }
+  .mission-done .mission-text { text-decoration: line-through; }
+
+
+  /* ── SECTION SHARED ── */
+  section {
+    position: relative; z-index: 1;
+    padding: 6rem 2rem;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 16px; height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-subtitle {
+    color: var(--text2);
+    font-size: 1.05rem;
+    font-weight: 300;
+    margin-top: 0.8rem;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+
+  /* ── HOW IT WORKS ── */
+  .how-section { background: var(--bg2); }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .how-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .how-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-4px);
+  }
+
+  .how-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .how-card:nth-child(1)::before { background: radial-gradient(circle at 0% 0%, rgba(79,142,255,0.06), transparent 60%); }
+  .how-card:nth-child(2)::before { background: radial-gradient(circle at 0% 0%, rgba(124,93,250,0.06), transparent 60%); }
+  .how-card:nth-child(3)::before { background: radial-gradient(circle at 0% 0%, rgba(0,212,160,0.06), transparent 60%); }
+  .how-card:nth-child(4)::before { background: radial-gradient(circle at 0% 0%, rgba(255,180,67,0.06), transparent 60%); }
+  .how-card:hover::before { opacity: 1; }
+
+  .how-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    opacity: 0.08;
+    position: absolute;
+    top: 1rem; right: 1.25rem;
+  }
+
+  .how-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .how-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .how-card p {
+    font-size: 0.88rem;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+
+  /* ── FEATURES ── */
+  .features-section {}
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 3.5rem;
+  }
+
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card.large {
+    grid-column: span 2;
+  }
+
+  .feature-card:hover {
+    border-color: var(--border2);
+    background: var(--surface2);
+  }
+
+  .feature-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card p {
+    font-size: 0.88rem;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  .feature-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .ftag {
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    background: rgba(79,142,255,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(79,142,255,0.2);
+  }
+
+  .ftag.purple { background: rgba(124,93,250,0.1); color: var(--accent2); border-color: rgba(124,93,250,0.2); }
+  .ftag.green { background: rgba(0,212,160,0.1); color: var(--accent3); border-color: rgba(0,212,160,0.2); }
+  .ftag.orange { background: rgba(255,180,67,0.1); color: var(--accent5); border-color: rgba(255,180,67,0.2); }
+
+
+  /* ── LEARNING PATH ── */
+  .path-section { background: var(--bg2); }
+
+  .path-timeline {
+    margin-top: 3.5rem;
+    position: relative;
+    padding-left: 2.5rem;
+  }
+
+  .path-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2), var(--accent3), transparent);
+    border-radius: 1px;
+  }
+
+  .path-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+  }
+
+  .path-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--bg2);
+    border: 2px solid var(--accent);
+    transform: translateX(calc(-50% + 1px));
+  }
+
+  .path-item:nth-child(2)::before { border-color: var(--accent2); }
+  .path-item:nth-child(3)::before { border-color: var(--accent3); }
+  .path-item:nth-child(4)::before { border-color: var(--accent5); }
+
+  .path-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .path-item:nth-child(2) .path-tag { color: var(--accent2); }
+  .path-item:nth-child(3) .path-tag { color: var(--accent3); }
+  .path-item:nth-child(4) .path-tag { color: var(--accent5); }
+
+  .path-item h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .path-item p {
+    font-size: 0.88rem;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  .path-modules {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+
+  .path-mod {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.75rem;
+    color: var(--text2);
+  }
+
+
+  /* ── META SYSTEM ── */
+  .meta-section {}
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 3.5rem;
+  }
+
+  .meta-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .meta-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border2);
+  }
+
+  .meta-card-accent {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: 2px 2px 0 0;
+  }
+
+  .meta-card h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .meta-card p {
+    font-size: 0.83rem;
+    color: var(--text2);
+    line-height: 1.65;
+  }
+
+  .meta-emoji { font-size: 1.4rem; }
+
+
+  /* ── GAMIFICATION ── */
+  .game-section { background: var(--bg2); }
+
+  .game-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 3.5rem;
+  }
+
+  .game-left { display: flex; flex-direction: column; gap: 1rem; }
+
+  .game-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .game-card:hover { border-color: var(--border2); transform: translateX(4px); }
+
+  .game-card-head {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .game-card-icon {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+
+  .game-card h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .game-card p {
+    font-size: 0.83rem;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* Profile card */
+  .profile-card {
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .profile-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 auto 1rem;
+  }
+
+  .profile-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .profile-level {
+    display: inline-block;
+    background: rgba(79,142,255,0.1);
+    border: 1px solid rgba(79,142,255,0.25);
+    color: var(--accent);
+    padding: 0.2rem 0.8rem;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin: 0.4rem 0 1.25rem;
+  }
+
+  .profile-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .profile-stat {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 0.7rem 0.5rem;
+  }
+
+  .profile-stat-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .profile-stat-key {
+    font-size: 0.68rem;
+    color: var(--text3);
+    margin-top: 0.15rem;
+  }
+
+  .badges-row {
+    display: flex; justify-content: center; gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+  }
+
+  .badge:hover { transform: scale(1.15); }
+
+  .streak-bar {
+    margin: 1rem 0;
+    display: flex; justify-content: center; gap: 0.3rem;
+  }
+
+  .streak-day {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .streak-day.done {
+    background: rgba(255,180,67,0.15);
+    border-color: rgba(255,180,67,0.35);
+    color: var(--accent5);
+  }
+
+  .streak-day.today {
+    background: rgba(255,180,67,0.25);
+    border-color: var(--accent5);
+    color: var(--accent5);
+    box-shadow: 0 0 10px rgba(255,180,67,0.2);
+  }
+
+
+  /* ── CTA ── */
+  .cta-section {
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cta-inner {
+    position: relative;
+    background: linear-gradient(135deg, rgba(79,142,255,0.08) 0%, rgba(124,93,250,0.08) 50%, rgba(0,212,160,0.06) 100%);
+    border: 1px solid var(--border2);
+    border-radius: 24px;
+    padding: 5rem 2rem;
+    overflow: hidden;
+  }
+
+  .cta-inner::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,142,255,0.06) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .cta-inner h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    position: relative;
+  }
+
+  .cta-inner p {
+    color: var(--text2);
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin: 1rem auto 2.5rem;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; position: relative; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative; z-index: 1;
+  }
+
+  .footer-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+
+  .footer-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.85rem;
+    color: var(--text3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--text2); }
+
+  .footer-copy {
+    font-size: 0.82rem;
+    color: var(--text3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ── INTERACTIVE WORD ── */
+  .word-demo {
+    margin-top: 3.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .word-demo-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 1rem;
+  }
+
+  .word-demo-text {
+    font-size: 1.05rem;
+    line-height: 2;
+    color: var(--text2);
+  }
+
+  .clickable-word {
+    color: var(--text);
+    cursor: pointer;
+    border-bottom: 1px dotted rgba(79,142,255,0.5);
+    transition: all 0.15s;
+    position: relative;
+  }
+
+  .clickable-word:hover, .clickable-word.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    border-bottom-style: solid;
+  }
+
+  .word-popup {
+    display: none;
+    position: absolute;
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    min-width: 240px;
+    z-index: 10;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    animation: popupIn 0.2s ease;
+  }
+
+  @keyframes popupIn {
+    from { opacity: 0; transform: scale(0.95) translateY(4px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .word-popup.show { display: block; }
+
+  .popup-word { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); }
+  .popup-type { font-size: 0.72rem; color: var(--accent2); margin-bottom: 0.5rem; }
+  .popup-def { font-size: 0.83rem; color: var(--text2); line-height: 1.6; margin-bottom: 0.6rem; }
+  .popup-example { font-size: 0.8rem; color: var(--text3); font-style: italic; border-left: 2px solid var(--accent); padding-left: 0.6rem; }
+
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .preview-body { grid-template-columns: 1fr; }
+    .preview-sidebar { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .feature-card.large { grid-column: span 1; }
+    .meta-grid { grid-template-columns: 1fr; }
+    .game-showcase { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+  }
 </style>
 </head>
-
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="logo">NEXUS</div>
-  <div>
-    <a href="#">Home</a>
-    <a href="#">Learn</a>
-    <a href="#">Path</a>
-  </div>
+  <a href="#" class="nav-logo">NEX<span>US</span></a>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#path">Learning Path</a></li>
+    <li><a href="#meta">Meta-System</a></li>
+    <li><a href="#" class="nav-cta">Start Learning Free</a></li>
+  </ul>
 </nav>
 
+
+<!-- HERO -->
 <section class="hero">
-  <h1>The AI that learns <span>how you learn</span></h1>
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Powered by Adaptive AI
+  </div>
+
+  <h1>
+    The AI that learns<br>
+    <span class="grad">how you learn</span>
+  </h1>
+
   <p>
-    Adaptive learning system powered by metacognition,
-    memory tracking, and real-time cognitive feedback.
+    NEXUS is not a course. It's a living educational intelligence that continuously adapts to your mind — tracking memory, cognition, and motivation to make you a smarter learner, not just a better student.
   </p>
+
+  <div class="hero-actions">
+    <a href="#" class="btn-primary">
+      Begin Your Journey
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="#how" class="btn-secondary">See How It Works</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">24+</div>
+      <div class="stat-label">Cognitive metrics tracked</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Adaptive learning paths</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">7</div>
+      <div class="stat-label">Meta-learning systems</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">Real-time</div>
+      <div class="stat-label">AI adaptation engine</div>
+    </div>
+  </div>
+
+  <!-- Dashboard Preview -->
+  <div class="hero-preview">
+    <div class="preview-glow"></div>
+    <div class="preview-window">
+      <div class="preview-bar">
+        <span class="dot r"></span>
+        <span class="dot y"></span>
+        <span class="dot g"></span>
+        <div class="preview-url">nexus-learn.ai/dashboard</div>
+      </div>
+      <div class="preview-body">
+        <div class="preview-sidebar">
+          <div class="sidebar-section">Learn</div>
+          <div class="sidebar-item active">
+            <span class="sidebar-icon" style="background:rgba(79,142,255,0.12)">📊</span> Dashboard
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-icon" style="background:rgba(124,93,250,0.12)">📖</span> English
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-icon" style="background:rgba(0,212,160,0.12)">💻</span> Coding
+          </div>
+          <div class="sidebar-section">Train</div>
+          <div class="sidebar-item">
+            <span class="sidebar-icon" style="background:rgba(255,180,67,0.12)">🧠</span> Recall
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-icon" style="background:rgba(255,107,107,0.12)">🎯</span> Missions
+          </div>
+          <div class="sidebar-section">Reflect</div>
+          <div class="sidebar-item">
+            <span class="sidebar-icon" style="background:rgba(79,142,255,0.12)">🔍</span> Analytics
+          </div>
+        </div>
+        <div class="preview-main">
+          <div class="preview-greeting">
+            <h3>Good morning, Alex 👋</h3>
+            <span>Day 42 streak 🔥</span>
+          </div>
+          <div class="preview-cards">
+            <div class="preview-card">
+              <div class="preview-card-label">Today's XP</div>
+              <div class="preview-card-value c-accent">840</div>
+              <div class="preview-card-sub">+12% vs yesterday</div>
+            </div>
+            <div class="preview-card">
+              <div class="preview-card-label">Mastery Level</div>
+              <div class="preview-card-value c-purple">Lv. 23</div>
+              <div class="preview-card-sub">72% to Lv. 24</div>
+            </div>
+            <div class="preview-card">
+              <div class="preview-card-label">Memory Score</div>
+              <div class="preview-card-value c-green">91%</div>
+              <div class="preview-card-sub">Strong retention</div>
+            </div>
+          </div>
+          <div class="xp-section">
+            <div class="xp-header">
+              <span class="xp-label">Progress to Level 24</span>
+              <span class="xp-value">5,040 / 7,000 XP</span>
+            </div>
+            <div class="xp-bar"><div class="xp-fill"></div></div>
+          </div>
+          <div style="font-size:0.72rem; color:var(--text3); margin-bottom:0.25rem;">Active Vocabulary</div>
+          <div class="vocab-row">
+            <span class="vocab-pill mastered">ephemeral</span>
+            <span class="vocab-pill mastered">tenacious</span>
+            <span class="vocab-pill learning">ubiquitous</span>
+            <span class="vocab-pill learning">paradigm</span>
+            <span class="vocab-pill weak">eloquent</span>
+            <span class="vocab-pill weak">nuanced</span>
+          </div>
+          <div class="mission-list">
+            <div class="mission-item mission-done">
+              <div class="mission-icon" style="background:rgba(0,212,160,0.12)">✅</div>
+              <span class="mission-text">Active recall — Grammar Unit 7</span>
+              <span class="mission-xp">+120 XP</span>
+            </div>
+            <div class="mission-item">
+              <div class="mission-icon" style="background:rgba(79,142,255,0.12)">📝</div>
+              <span class="mission-text">Vocabulary challenge — advanced set</span>
+              <span class="mission-xp">+200 XP</span>
+            </div>
+            <div class="mission-item">
+              <div class="mission-icon" style="background:rgba(124,93,250,0.12)">🎤</div>
+              <span class="mission-text">AI Speaking practice — 10 min</span>
+              <span class="mission-xp">+180 XP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<div class="card" id="card">
-  <div class="section-title">Interactive Learning System</div>
 
-  <p>
-    Understanding
-    <span class="word" data-word="Metacognition"
-      data-def="The ability to think about your own thinking process and improve how you learn.">
-      metacognition
-    </span>
-    allows learners to improve
-    <span class="word" data-word="Memory"
-      data-def="The brain's ability to store, retain, and recall information over time.">
-      memory
-    </span>
-    and build stronger learning systems.
-  </p>
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="section-label">Process</div>
+    <h2 class="section-title reveal">How NEXUS adapts to you</h2>
+    <p class="section-subtitle reveal">Unlike static courses, NEXUS continuously observes how your mind works and reshapes every lesson to match your unique cognitive fingerprint.</p>
 
-  <div class="note">Click on any highlighted word to see AI explanation.</div>
+    <div class="how-grid">
+      <div class="how-card reveal">
+        <span class="how-number">01</span>
+        <div class="how-icon" style="background:rgba(79,142,255,0.12);">🔬</div>
+        <h3>Cognitive Profiling</h3>
+        <p>From your first session, the AI builds a model of how you learn — your attention span, memory patterns, confusion triggers, and preferred explanation styles.</p>
+      </div>
+      <div class="how-card reveal">
+        <span class="how-number">02</span>
+        <div class="how-icon" style="background:rgba(124,93,250,0.12);">⚡</div>
+        <h3>Real-Time Adaptation</h3>
+        <p>Every hesitation, re-read, and skipped lesson is analyzed. The system adjusts difficulty, pacing, and content in real time — not just at the end of a lesson.</p>
+      </div>
+      <div class="how-card reveal">
+        <span class="how-number">03</span>
+        <div class="how-icon" style="background:rgba(0,212,160,0.12);">🧠</div>
+        <h3>Memory Engineering</h3>
+        <p>Spaced repetition and active recall are baked into every lesson. The AI schedules exactly when to review each concept for maximum long-term retention.</p>
+      </div>
+      <div class="how-card reveal">
+        <span class="how-number">04</span>
+        <div class="how-icon" style="background:rgba(255,180,67,0.12);">🚀</div>
+        <h3>Mission Progression</h3>
+        <p>You don't just watch videos. You complete missions, earn mastery, unlock new worlds, and become smarter through doing — not passive consumption.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div class="popup" id="popup"></div>
-</div>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-label">Features</div>
+    <h2 class="section-title reveal">Everything your brain needs</h2>
+    <p class="section-subtitle reveal">A complete ecosystem of learning tools, all powered by the same adaptive AI engine that knows you.</p>
+
+    <div class="features-grid">
+      <!-- Interactive Dictionary -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">📖</div>
+        <h3>Intelligent Dictionary</h3>
+        <p>Click any word in any text to instantly reveal meanings, pronunciation, grammar type, synonyms, memory strength, and AI-generated contextual explanations.</p>
+        <div class="feature-tags">
+          <span class="ftag">Click-to-learn</span>
+          <span class="ftag">Audio</span>
+          <span class="ftag green">Memory tracking</span>
+        </div>
+      </div>
+
+      <!-- Voice AI -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">🎤</div>
+        <h3>Voice AI Tutor</h3>
+        <p>Speak directly to your AI tutor. It analyzes pronunciation, detects hesitation, and gives real-time feedback on speaking confidence and fluency patterns.</p>
+        <div class="feature-tags">
+          <span class="ftag purple">Speech-to-text</span>
+          <span class="ftag purple">Pronunciation AI</span>
+        </div>
+      </div>
+
+      <!-- Adaptive Books -->
+      <div class="feature-card large reveal">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;">
+          <div>
+            <div class="feature-icon">📚</div>
+            <h3>Intelligent Books & PDFs</h3>
+            <p>Every book becomes a full learning environment. Upload any PDF or select from the library and NEXUS transforms each chapter into vocabulary systems, grammar lessons, quizzes, speaking practice, AI discussions, and reflection prompts — automatically.</p>
+            <div class="feature-tags">
+              <span class="ftag">PDF Upload</span>
+              <span class="ftag green">Auto-quizzes</span>
+              <span class="ftag orange">Summaries</span>
+              <span class="ftag purple">AI Discussion</span>
+            </div>
+          </div>
+          <div>
+            <!-- word demo -->
+            <div class="word-demo" style="margin-top:0;">
+              <div class="word-demo-label">Try clicking a word ↓</div>
+              <div class="word-demo-text">
+                The concept of <span class="clickable-word" data-word="metacognition" data-type="noun" data-def="The awareness and understanding of one's own thought processes — thinking about how you think." data-example="Developing metacognition allows learners to identify which study strategies work best for them.">metacognition</span> is fundamental to intelligent learning. By developing <span class="clickable-word" data-word="self-awareness" data-type="noun (compound)" data-def="Conscious knowledge of one's own character, feelings, motives, and learning patterns." data-example="Her self-awareness helped her recognize that she learned better through visual diagrams than text.">self-awareness</span>, learners can identify their cognitive <span class="clickable-word" data-word="patterns" data-type="noun" data-def="Repeated behaviors or regularities in thinking, attention, and memory that can be analyzed and improved." data-example="The AI detected patterns in his mistakes and adjusted the curriculum accordingly.">patterns</span> and accelerate growth.
+              </div>
+              <div class="word-popup" id="wordPopup">
+                <div class="popup-word" id="popWord"></div>
+                <div class="popup-type" id="popType"></div>
+                <div class="popup-def" id="popDef"></div>
+                <div class="popup-example" id="popEx"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coding -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">💻</div>
+        <h3>Adaptive Coding Engine</h3>
+        <p>Python, algorithms, and web development — all taught through the same metacognitive system. The AI tracks your logic mistakes, debugging patterns, and cognitive load during programming.</p>
+        <div class="feature-tags">
+          <span class="ftag green">Python</span>
+          <span class="ftag green">Algorithms</span>
+          <span class="ftag green">Debugging AI</span>
+        </div>
+      </div>
+
+      <!-- Focus -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">⏱</div>
+        <h3>Focus & Pomodoro System</h3>
+        <p>AI-adjusted study sessions that respond to your attention span. Cognitive load is monitored in real time and session length adapts to keep you in the optimal learning zone.</p>
+        <div class="feature-tags">
+          <span class="ftag orange">Attention tracking</span>
+          <span class="ftag orange">Pomodoro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- LEARNING PATH -->
+<section class="path-section" id="path">
+  <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;">
+    <div>
+      <div class="section-label">Roadmap</div>
+      <h2 class="section-title reveal">Your learning universe expands</h2>
+      <p class="section-subtitle reveal">NEXUS begins with English and grows into a full cognitive development ecosystem. As you master each domain, new worlds unlock.</p>
+    </div>
+    <div class="path-timeline">
+      <div class="path-item reveal">
+        <div class="path-tag">Foundation</div>
+        <h3>English Mastery</h3>
+        <p>Vocabulary, grammar, reading comprehension, pronunciation, and speaking fluency — all tracked, all adaptive, all interconnected.</p>
+        <div class="path-modules">
+          <span class="path-mod">Vocabulary Engine</span>
+          <span class="path-mod">Grammar Maps</span>
+          <span class="path-mod">Pronunciation AI</span>
+          <span class="path-mod">Speaking Practice</span>
+        </div>
+      </div>
+      <div class="path-item reveal">
+        <div class="path-tag">Expansion</div>
+        <h3>Coding & Logic</h3>
+        <p>Python, algorithms, web development, and engineering thinking — taught through the same metacognitive engine with project-based missions.</p>
+        <div class="path-modules">
+          <span class="path-mod">Python</span>
+          <span class="path-mod">Algorithms</span>
+          <span class="path-mod">APIs</span>
+          <span class="path-mod">Debugging</span>
+        </div>
+      </div>
+      <div class="path-item reveal">
+        <div class="path-tag">Advanced</div>
+        <h3>AI & Engineering</h3>
+        <p>AI education, electronics, Raspberry Pi, automation, and mathematics — project-based learning at the intersection of technology and creation.</p>
+        <div class="path-modules">
+          <span class="path-mod">AI Concepts</span>
+          <span class="path-mod">Electronics</span>
+          <span class="path-mod">Raspberry Pi</span>
+          <span class="path-mod">Automation</span>
+        </div>
+      </div>
+      <div class="path-item reveal">
+        <div class="path-tag">Meta-Intelligence</div>
+        <h3>Cognitive Mastery</h3>
+        <p>The final stage: learning how to think, remember, decide, and self-improve. This is where NEXUS graduates you into a self-directed intelligence.</p>
+        <div class="path-modules">
+          <span class="path-mod">Decision Systems</span>
+          <span class="path-mod">Pattern Recognition</span>
+          <span class="path-mod">Memory Science</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- META SYSTEM -->
+<section class="meta-section" id="meta">
+  <div class="container">
+    <div class="section-label">Meta-Intelligence</div>
+    <h2 class="section-title reveal">Teach your brain to teach itself</h2>
+    <p class="section-subtitle reveal">The deepest layer of NEXUS isn't a subject — it's a mirror. Through reflection, metacognition, and self-analysis, you learn how your mind actually works.</p>
+
+    <div class="meta-grid">
+      <div class="meta-card reveal">
+        <div class="meta-card-accent" style="background:var(--accent);"></div>
+        <div class="meta-emoji">🔍</div>
+        <h4>Meta-Awareness</h4>
+        <p>The AI tracks what causes your confusion, where your attention drifts, and what emotional states accompany your best learning moments.</p>
+      </div>
+      <div class="meta-card reveal">
+        <div class="meta-card-accent" style="background:var(--accent2);"></div>
+        <div class="meta-emoji">🧠</div>
+        <h4>Meta-Memory</h4>
+        <p>Understand why you forget and what conditions create lasting memory. The system makes the invisible science of retention visible to you.</p>
+      </div>
+      <div class="meta-card reveal">
+        <div class="meta-card-accent" style="background:var(--accent3);"></div>
+        <div class="meta-emoji">🔄</div>
+        <h4>Meta-Learning</h4>
+        <p>Discover which learning strategies actually work for your cognitive type and receive personalized recommendations to accelerate improvement.</p>
+      </div>
+      <div class="meta-card reveal">
+        <div class="meta-card-accent" style="background:var(--accent5);"></div>
+        <div class="meta-emoji">🎯</div>
+        <h4>Meta-Attention</h4>
+        <p>Train focus like a skill. NEXUS maps your attention patterns and designs sessions that build concentration over time.</p>
+      </div>
+      <div class="meta-card reveal">
+        <div class="meta-card-accent" style="background:var(--accent4);"></div>
+        <div class="meta-emoji">💬</div>
+        <h4>Reflection Engine</h4>
+        <p>After every session, you're guided through targeted reflection: what confused you, why you forgot, what strategy worked, what to change next time.</p>
+      </div>
+      <div class="meta-card reveal">
+        <div class="meta-card-accent" style="background:linear-gradient(90deg,var(--accent),var(--accent2));"></div>
+        <div class="meta-emoji">🧬</div>
+        <h4>Cognitive Evolution</h4>
+        <p>Over months, your cognitive profile becomes a detailed map of your mind's evolution — showing measurable growth in thinking, memory, and self-awareness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- GAMIFICATION -->
+<section class="game-section" id="game">
+  <div class="container">
+    <div class="section-label">Progression</div>
+    <h2 class="section-title reveal">Learning feels like leveling up</h2>
+    <p class="section-subtitle reveal">Mastery isn't just tracked — it's celebrated. Every concept you lock in evolves your learner profile.</p>
+
+    <div class="game-showcase">
+      <div class="game-left">
+        <div class="game-card reveal">
+          <div class="game-card-head">
+            <div class="game-card-icon" style="background:rgba(79,142,255,0.12);">⚡</div>
+            <h4>XP & Levels</h4>
+          </div>
+          <p>Every correct answer, completed mission, and reflection earns XP. Levels unlock harder content, new worlds, and advanced AI interactions.</p>
+        </div>
+        <div class="game-card reveal">
+          <div class="game-card-head">
+            <div class="game-card-icon" style="background:rgba(255,180,67,0.12);">🔥</div>
+            <h4>Streaks & Daily Missions</h4>
+          </div>
+          <p>Consistency is rewarded. Build a streak through daily missions that the AI personalizes to your current weaknesses and available time.</p>
+        </div>
+        <div class="game-card reveal">
+          <div class="game-card-head">
+            <div class="game-card-icon" style="background:rgba(124,93,250,0.12);">🌳</div>
+            <h4>Skill Trees & Mastery Gates</h4>
+          </div>
+          <p>Content is locked behind genuine understanding. You cannot skip mastery — the AI verifies comprehension before unlocking the next branch.</p>
+        </div>
+      </div>
+
+      <!-- Profile card -->
+      <div class="profile-card reveal">
+        <div class="profile-avatar">A</div>
+        <div class="profile-name">Alex Mercer</div>
+        <div class="profile-level">⚡ Level 23 — Language Scholar</div>
+        <div class="streak-bar">
+          <div class="streak-day done">M</div>
+          <div class="streak-day done">T</div>
+          <div class="streak-day done">W</div>
+          <div class="streak-day done">T</div>
+          <div class="streak-day done">F</div>
+          <div class="streak-day done">S</div>
+          <div class="streak-day today">S</div>
+        </div>
+        <div style="font-size:0.75rem;color:var(--text3);margin-bottom:1rem;">🔥 42-day streak</div>
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <div class="profile-stat-val" style="color:var(--accent)">1,240</div>
+            <div class="profile-stat-key">Words<br>Mastered</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-val" style="color:var(--accent2)">48h</div>
+            <div class="profile-stat-key">Study<br>Time</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-val" style="color:var(--accent3)">91%</div>
+            <div class="profile-stat-key">Memory<br>Score</div>
+          </div>
+        </div>
+        <div class="badges-row">
+          <div class="badge" title="First Week">🌱</div>
+          <div class="badge" title="Grammar Master">📝</div>
+          <div class="badge" title="Vocab Champion">📚</div>
+          <div class="badge" title="30-Day Streak">🔥</div>
+          <div class="badge" title="Speed Learner">⚡</div>
+          <div class="badge" title="Reflection Pro">🧠</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <h2>
+        Your mind is the platform.<br>
+        <span style="background:linear-gradient(135deg,#4f8eff,#7c5dfa,#00d4a0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">NEXUS is its engine.</span>
+      </h2>
+      <p>Join learners who don't just study information — they evolve how they think, remember, and learn.</p>
+      <div class="cta-actions">
+        <a href="#" class="btn-primary">Start Free Today</a>
+        <a href="#" class="btn-secondary">Watch Demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">NEX<span style="color:var(--accent)">US</span></div>
+    <ul class="footer-links">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2025 NEXUS Learning. All rights reserved.</div>
+  </div>
+</footer>
+
 
 <script>
-const words = document.querySelectorAll(".word");
-const popup = document.getElementById("popup");
-const card = document.getElementById("card");
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
 
-let active = null;
+  // Word popup
+  const words = document.querySelectorAll('.clickable-word');
+  const popup = document.getElementById('wordPopup');
+  let activeWord = null;
 
-words.forEach(word => {
-  word.addEventListener("click", (e) => {
-    e.stopPropagation();
+  words.forEach(word => {
+    word.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (activeWord) activeWord.classList.remove('active');
 
-    const rect = word.getBoundingClientRect();
-    const cardRect = card.getBoundingClientRect();
+      if (activeWord === word && popup.classList.contains('show')) {
+        popup.classList.remove('show');
+        activeWord = null;
+        return;
+      }
 
-    const title = word.dataset.word;
-    const def = word.dataset.def;
+      activeWord = word;
+      word.classList.add('active');
 
-    popup.innerHTML = `
-      <strong>${title}</strong>
-      <small>${def}</small>
-    `;
+      document.getElementById('popWord').textContent = word.dataset.word;
+      document.getElementById('popType').textContent = word.dataset.type;
+      document.getElementById('popDef').textContent = word.dataset.def;
+      document.getElementById('popEx').textContent = word.dataset.example;
 
-    popup.style.display = "block";
-
-    // position inside card
-    popup.style.left = (rect.left - cardRect.left) + "px";
-    popup.style.top = (rect.bottom - cardRect.top + 10) + "px";
-
-    active = word;
+      const rect = word.getBoundingClientRect();
+      const demoRect = word.closest('.word-demo').getBoundingClientRect();
+      popup.style.top = (rect.bottom - demoRect.top + 8) + 'px';
+      popup.style.left = Math.min(rect.left - demoRect.left, demoRect.width - 260) + 'px';
+      popup.classList.add('show');
+    });
   });
-});
 
-document.addEventListener("click", () => {
-  popup.style.display = "none";
-  active = null;
-});
+  document.addEventListener('click', () => {
+    popup.classList.remove('show');
+    if (activeWord) { activeWord.classList.remove('active'); activeWord = null; }
+  });
+
+  // Smooth scroll for anchors
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
 </script>
-
 </body>
 </html>
